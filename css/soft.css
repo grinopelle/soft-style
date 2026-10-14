@@ -1,0 +1,75 @@
+/*
+ * Stile "Soft" — CSS semplice, senza framework. Stessi valori di TRBK (trbk/src/app/globals.css).
+ * Uso: <link rel="stylesheet" href="soft.css"> e caratteri in ../fonts (o cambia i percorsi).
+ * Tema chiaro/scuro automatico; data-theme="light" | "dark" su <html> per forzarlo.
+ */
+@font-face { font-family: "Figtree"; font-weight: 400; font-display: swap; src: url(../fonts/figtree_regular.ttf) format("truetype"); }
+@font-face { font-family: "Figtree"; font-weight: 500; font-display: swap; src: url(../fonts/figtree_medium.ttf) format("truetype"); }
+@font-face { font-family: "Figtree"; font-weight: 600; font-display: swap; src: url(../fonts/figtree_semibold.ttf) format("truetype"); }
+@font-face { font-family: "Figtree"; font-weight: 700; font-display: swap; src: url(../fonts/figtree_bold.ttf) format("truetype"); }
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 800; font-display: swap; src: url(../fonts/bricolage_extrabold.ttf) format("truetype"); }
+
+:root {
+  --bg: #f4f4ef; --surface: #ffffff; --surface-2: #e8e8e1; --ink: #1a1a1a; --muted: #5e5e58;
+  --line: #e4e3dc; --input: #cfcec6; --lime: #cfff3d; --lime-edge: #8db300; --on-lime: #1a1a1a;
+  --active: #e7f5b8; --edge: #1a1a1a; --danger: #b3261e; --overlay: rgb(0 0 0 / 0.5);
+  --card-shadow: 0 8px 24px rgb(26 26 26 / 0.07);
+  --radius-icon: 8px; --radius-control: 14px; --radius-card: 18px; --radius-hero: 24px;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Figtree", ui-sans-serif, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161616; --surface: #212121; --surface-2: #2b2b2b; --ink: #f2f2ee; --muted: #a8a8a2;
+    --line: #303030; --input: #484848; --active: #33401a; --edge: #000000; --danger: #ff8a80;
+    --card-shadow: 0 8px 24px rgb(0 0 0 / 0.35); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161616; --surface: #212121; --surface-2: #2b2b2b; --ink: #f2f2ee; --muted: #a8a8a2;
+  --line: #303030; --input: #484848; --active: #33401a; --edge: #000000; --danger: #ff8a80;
+  --card-shadow: 0 8px 24px rgb(0 0 0 / 0.35); color-scheme: dark;
+}
+
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* Testi */
+.soft-display { font-family: var(--font-display); font-weight: 800; font-size: 2.25rem; line-height: 1.05; }
+.soft-title   { font-family: var(--font-display); font-weight: 800; font-size: 1.625rem; line-height: 1.1; }
+.soft-heading { font-weight: 700; font-size: 1.125rem; line-height: 1.3; }
+.soft-small   { font-size: 0.875rem; line-height: 1.45; }
+.soft-label   { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.soft-muted   { color: var(--muted); }
+
+/* Riquadri */
+.soft-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--card-shadow); padding: 16px; }
+.soft-hero { background: var(--lime); color: var(--on-lime); border-radius: var(--radius-hero); padding: 24px; }
+
+/* Pulsanti */
+.soft-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 20px;
+  border: none; border-radius: var(--radius-control); background: var(--lime); color: var(--on-lime);
+  box-shadow: 0 4px 0 var(--lime-edge); font: 700 1rem var(--font-sans); text-decoration: none; cursor: pointer;
+}
+.soft-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--lime-edge); }
+.soft-btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 18px;
+  border: 1.5px solid var(--ink); border-radius: var(--radius-control); background: var(--surface); color: var(--ink);
+  box-shadow: 0 3px 0 var(--edge); font: 600 1rem var(--font-sans); text-decoration: none; cursor: pointer;
+}
+.soft-icon-box { width: 28px; height: 28px; border: 1.5px solid currentColor; border-radius: var(--radius-icon); display: inline-flex; align-items: center; justify-content: center; }
+
+/* Campi */
+.soft-input {
+  height: 52px; box-sizing: border-box; width: 100%; padding: 0 16px; border: 1.5px solid var(--input);
+  border-radius: var(--radius-control); background: var(--surface); color: var(--ink); font: 400 1rem var(--font-sans);
+}
+.soft-input:focus { border-color: var(--ink); outline: none; }
+
+/* Pillole e scelte */
+.soft-pill { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 0.875rem var(--font-sans); }
+.soft-pill[aria-pressed="true"], .soft-pill.is-on { background: var(--lime); border-color: var(--lime); color: var(--on-lime); }
+.soft-nav-item { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border-radius: var(--radius-control); color: var(--muted); font-weight: 600; text-decoration: none; }
+.soft-nav-item[aria-current="page"] { background: var(--active); color: var(--ink); }
